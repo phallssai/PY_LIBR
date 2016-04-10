@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 import fnmatch,os
 from sys import modules
-import time, os, stat
-import datetime
-
 def delete_module(modname, paranoid=None):
     try:
         thismod = modules[modname]
@@ -43,15 +40,6 @@ def reimport(modname) :
     delete_module(modname)
     import modname
 
-def get_modification_time(file) :
-    if os.path.exists(file):
-        mod_time_flt=os.stat(file).st_mtime
-        mod_time = datetime.datetime.fromtimestamp(mod_time_flt)
-        
-    else :
-        mod_time =''
-    return mod_time
-
 def flatten(x):
     result = []
     for el in x:
@@ -60,10 +48,6 @@ def flatten(x):
         else:
             result.append(el)
     return result
-
-def file_age_in_seconds(pathname):
-    return time.time() - os.stat(pathname)[stat.ST_MTIME]
-
 
 def main():
     pass
